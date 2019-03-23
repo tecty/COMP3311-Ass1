@@ -1,0 +1,16 @@
+#!/bin/bash 
+echo 'drop database mydb; create database mydb;'| psql 'host=localhost user=postgres password=apple123' 
+
+echo "apply schema"
+psql 'dbname=mydb host=localhost user=postgres password=apple123' -f asx-schema.sql 
+echo 
+echo "apply data"
+psql 'dbname=mydb host=localhost user=postgres password=apple123' -f asx-data.sql 
+echo 
+echo "apply answer views"
+psql 'dbname=mydb host=localhost user=postgres password=apple123' -f answer.sql 
+echo 
+echo "TEST Result"
+psql 'dbname=mydb host=localhost user=postgres password=apple123' -f test.sql 
+
+

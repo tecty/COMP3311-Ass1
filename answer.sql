@@ -2,7 +2,7 @@
 create or replace view Q1 (Name, Country) as
     select name, country
     from company
-    where lower(trim(country))='australia'
+    where lower(trim(country))<>'australia'
 ;
 
 -- q2
@@ -26,8 +26,17 @@ create or replace view Q3(Name) as
     where ca.sector='Technology'
 ;
 
+-- q4
 create or replace view Q4(Sector, Number) as 
     select sector, count(*) 
     from category 
     group by sector 
+;
+
+-- q5, different name means different person 
+create or replace view Q5(Name) as 
+    select distinct person 
+    from executive as e 
+    join category as c on c.code=e.code 
+    where c.sector='Technology' ;
 ;

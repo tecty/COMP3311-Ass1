@@ -40,3 +40,43 @@ create or replace view Q5(Name) as
     join category as c on c.code=e.code 
     where c.sector='Technology' ;
 ;
+
+-- q6 
+create or replace view company_code as 
+    select name, substr(zip, 1,1) 
+    from company
+;
+
+create or replace view Q6(Name) as 
+    select name from company_code where substr='2'
+;
+
+-- q7 
+create type asx_record as (
+    da date, code char(3), vol integer, price numeric
+);
+create type asx_record as (
+    "Date" date, Code char(3), Volume integer,
+    PrevPrice numeric, Price numeric, Change numeric, 
+    Gain numeric
+);
+
+create or replace view asx_shift as
+    select "Date"+1 as d,* from asx
+;
+
+create or replace view Q7(
+    "Date", Code, Volume, PrevPrice, Price, Change, Gain
+) as 
+    select 
+        a."Date", 
+        a.code, 
+        a.volume, 
+        ah.price , 
+        a.price,
+        a.price-ah.price,
+        (a.price-ah.price)/ah.price *100 
+    from asx as a 
+    join asx_shift as ah 
+    on a."Date"= ah.d and a.code = ah.code
+;

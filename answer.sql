@@ -52,15 +52,6 @@ create or replace view Q6(Name) as
 ;
 
 -- q7 
-create type asx_record as (
-    da date, code char(3), vol integer, price numeric
-);
-create type asx_record as (
-    "Date" date, Code char(3), Volume integer,
-    PrevPrice numeric, Price numeric, Change numeric, 
-    Gain numeric
-);
-
 create or replace view asx_shift as
     select "Date"+1 as d,* from asx
 ;
@@ -79,4 +70,36 @@ create or replace view Q7(
     from asx as a 
     join asx_shift as ah 
     on a."Date"= ah.d and a.code = ah.code
+;
+
+-- q8
+create or replace view asx_max_date as 
+    select "Date", max(volume)
+    from asx
+    group by "Date"
+;
+
+create or replace view Q8("Date", Code, Volume) as
+    select a."Date", a.code, a.volume
+    from asx as a 
+    join asx_max_date as am 
+    on a."Date"=am."Date" and am.max=a.volume
+;
+
+-- q9
+create or replace view Q9(Sector, Industry, Number) as 
+    select sector, industry, count(*) 
+    from category 
+    group by industry, sector 
+    order by sector, industry
+;
+
+-- q10
+
+create or replace view Q10(Code, Industry) as
+    select c.code, c.industry
+    from category as c 
+    join q9 
+    on q9.industry= c.industry 
+    where q9.number=1
 ;

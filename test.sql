@@ -5,3 +5,6 @@ select * from q4;
 select * from q5;
 select * from q6;
 select * from q7;
+select * from q8;
+select * from q9;
+select * from q10;

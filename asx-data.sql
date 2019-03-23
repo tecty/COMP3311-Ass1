@@ -5,7 +5,7 @@ insert into company (code, name, zip, country) values ('CCC', 'CCC corp','1024',
 insert into company (code, name, zip, country) values ('DDD', 'DDD corp','3011', 'Australia');
 insert into company (code, name, zip, country) values ('EEE', 'EEE corp','1244', 'US');
 insert into company (code, name, zip, country) values ('FFF', 'FFF corp','0255', 'Australia');
-insert into company (code, name, zip, country) values ('GGG', 'GGG corp','4854', 'Australia');
+insert into company (code, name, zip, country) values ('GGG', 'GGG corp','4854', 'New Zealand');
 insert into company (code, name, zip, country) values ('HHH', 'HHH corp','9842', 'Australia');
 
 insert into Executive (code, person) values ('AAA', 'Mark');
@@ -26,8 +26,8 @@ insert into Executive (code, person) values ('CCC', 'Dublin');
 insert into category (code, sector, industry) values ('AAA','Milk', 'Farming');
 insert into category (code, sector, industry) values ('BBB','Technology', 'SoC');
 insert into category (code, sector, industry) values ('CCC','Milk', 'Farming');
-insert into category (code, sector, industry) values ('DDD','Technology', 'Farming');
-insert into category (code, sector, industry) values ('EEE','Technology', 'Farming');
+insert into category (code, sector, industry) values ('DDD','Technology', 'Chipset');
+insert into category (code, sector, industry) values ('EEE','Technology', 'Chipset');
 insert into category (code, sector, industry) values ('FFF','Services', 'Delivery');
 insert into category (code, sector, industry) values ('GGG','Milk', 'Farming');
 
@@ -39,14 +39,14 @@ insert into asx ("Date", Code, Volume, Price) values ('2018-05-16', 'AAA', 8,  1
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-17', 'AAA', 17, 1.22);
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-18', 'AAA', 16, 1.15);
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-19', 'AAA', 5,  1.02);
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-03' , 'BBB'  ,  766300 ,0.91 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-04' , 'BBB'  ,  766300 ,0.92 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-05' , 'BBB'  ,  693800 ,0.91 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-06' , 'BBB'  ,  741800 ,0.90 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-09' , 'BBB'  ,  663900 ,0.89 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-10' , 'BBB'  ,  521500 ,0.89 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-11' , 'BBB'  ,  441900 ,0.92 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-12' , 'BBB'  ,  382300 ,0.91 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-13' , 'BBB'  ,  388900 ,0.90 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-16' , 'BBB'  ,  391700 ,0.90 );
-insert into asx ("Date", Code, Volume, Price) values ('2012-01-17' , 'BBB'  , 1503600 ,0.92 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-12' , 'BBB'  ,  766300 ,0.91 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-13' , 'BBB'  ,  766300 ,0.92 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-14' , 'BBB'  ,  693800 ,0.91 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-15' , 'BBB'  ,  741800 ,0.90 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-16' , 'BBB'  ,  663900 ,0.89 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-17' , 'BBB'  ,  521500 ,0.89 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-18' , 'BBB'  ,  441900 ,0.92 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-19' , 'BBB'  ,  382300 ,0.91 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-20' , 'BBB'  ,  388900 ,0.90 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-21' , 'BBB'  ,  391700 ,0.90 );
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-22' , 'BBB'  , 1503600 ,0.92 );

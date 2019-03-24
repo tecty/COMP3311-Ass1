@@ -159,3 +159,35 @@ create or replace view Q13(Code, Name, Address, Zip, Sector) as
     on co.code=ca.code
 ;
 
+-- q14 
+create or replace view trade_range(code, mi, ma) as
+    select code, min("Date"), max("Date") 
+    from asx 
+    group by code
+;
+
+create or replace view co_range_price(code, da, price) as 
+select a.code, a."Date", a.price
+from trade_range as tr 
+join asx as a 
+on 
+    tr.code = a.code 
+    and (
+        tr.mi = a."Date" or tr.ma=a."Date"
+    ) 
+;
+
+create or replace view Q14(Code, BeginPrice, EndPrice, Change, Gain) as 
+    select 
+        co1.code, co2.price,co1.price,
+        co1.price -co2.price,
+        (co1.price -co2.price)/co2.price*100  
+    from co_range_price as co1 
+    join co_range_price as co2 
+    on
+        co1.code= co2.code 
+        and
+        co1.da >co2.da
+;
+
+-- q15

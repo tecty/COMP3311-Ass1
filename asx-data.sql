@@ -39,7 +39,7 @@ insert into asx ("Date", Code, Volume, Price) values ('2018-05-15', 'AAA', 11, 0
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-16', 'AAA', 8,  1.2);
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-17', 'AAA', 17, 1.22);
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-18', 'AAA', 16, 1.15);
-insert into asx ("Date", Code, Volume, Price) values ('2018-05-19', 'AAA', 5,  1.02);
+insert into asx ("Date", Code, Volume, Price) values ('2018-05-19', 'AAA', 5,  1.20);
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-12' , 'BBB'  ,  766300 ,0.91 );
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-13' , 'BBB'  ,  766300 ,0.92 );
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-14' , 'BBB'  ,  693800 ,0.91 );

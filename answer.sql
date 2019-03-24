@@ -22,7 +22,8 @@ create or replace view Q2(code) as
 create or replace view Q3(Name) as 
     select c.name 
     from company as c 
-    join category as ca on ca.code = c.code 
+    join category as ca 
+    on ca.code = c.code 
     where ca.sector='Technology'
 ;
 
@@ -95,7 +96,6 @@ create or replace view Q9(Sector, Industry, Number) as
 ;
 
 -- q10
-
 create or replace view Q10(Code, Industry) as
     select c.code, c.industry
     from category as c 
@@ -103,3 +103,59 @@ create or replace view Q10(Code, Industry) as
     on q9.industry= c.industry 
     where q9.number=1
 ;
+
+-- q11
+create or replace view avg_company_rating as 
+    select c.code, avg(r.star) 
+    from company as c 
+    join rating as r 
+    on r.code = c.code 
+    group by c.code
+;
+
+create or replace view Q11(Sector, AvgRating) as
+    select c.sector, avg(cr.avg) 
+    from category as c 
+    join avg_company_rating as cr 
+    on cr.code=c.code 
+    group by c.sector 
+    order by avg desc; 
+; 
+
+-- q12
+create or replace view executive_company_count(person, "count") as 
+    select person, count(*) 
+    from executive 
+    group by person 
+;
+
+create or replace view Q12(Name) as 
+    select person 
+    from executive_company_count
+    where count > 1
+;
+
+-- q13
+create or replace view local_sector(sector) as 
+(
+    select sector 
+    from category
+) 
+except 
+(
+    select distinct ca.sector 
+    from category as ca 
+    join company as co 
+    on co.code =ca.code 
+    where co.country <>'Australia' 
+);
+
+create or replace view Q13(Code, Name, Address, Zip, Sector) as
+    select  co.code, co.name, co.address, co.zip, ca.sector 
+    from local_sector as ls 
+    join category as ca 
+    on ca.sector=ls.sector
+    join company as co 
+    on co.code=ca.code
+;
+

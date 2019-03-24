@@ -8,3 +8,6 @@ select * from q7;
 select * from q8;
 select * from q9;
 select * from q10;
+select * from q11;
+select * from q12;
+select * from q13;

@@ -191,3 +191,20 @@ create or replace view Q14(Code, BeginPrice, EndPrice, Change, Gain) as
 ;
 
 -- q15
+create or replace view co_gain_digest(code, min_gain, avg_gain, max_gain) as 
+    select code, min(gain), avg(gain), max(gain) 
+    from q7 
+    group by code
+;
+
+create or replace view Q15(
+    Code, MinPrice, AvgPrice, MaxPrice, MinDayGain, AvgDayGain, MaxDayGain
+) as 
+    select 
+        a.code, min(a.price),avg(a.price),max(a.price),
+        cgd.min_gain, cgd.avg_gain, cgd.max_gain 
+    from co_gain_digest as cgd
+    join asx as a 
+    on a.code=cgd.code 
+    group by a.code,cgd.min_gain, cgd.avg_gain, cgd.max_gain
+;

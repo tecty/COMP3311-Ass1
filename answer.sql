@@ -208,3 +208,54 @@ create or replace view Q15(
     on a.code=cgd.code 
     group by a.code,cgd.min_gain, cgd.avg_gain, cgd.max_gain
 ;
+
+-- q16
+create function check_one_ceo() returns trigger as $$
+declare 
+    ceo_count int; 
+begin 
+    ceo_count:= (select count(*) from executive where person = new.person);
+    if ( ceo_count = 0) then 
+        return new;
+    end if;
+    raise exception 'This person already be a company''s ceo';
+
+end; 
+$$ language plpgsql;
+
+create trigger only_one_ceo 
+before insert or update on Executive 
+for each row execute procedure check_one_ceo();
+
+-- q17 
+
+create function check_max_gain_and_give_5_stars() returns trigger as $$
+declare
+    max_gain numeric;
+    min_gain numeric;
+    today_gain numeric;
+begin
+    -- raise exception 'imhere ';
+    max_gain:= (select MaxDayGain from q15 where code = new.code); 
+    min_gain:= (select MinDayGain from q15 where code = new.code); 
+    today_gain:= (select gain from q7 where code=new.code and "Date"=new."Date");
+    -- raise notice 'values %', max_gain;
+    -- raise notice 'values %', min_gain;
+    -- raise notice 'values %', today_gain;
+    if (max_gain=today_gain) then 
+        update rating 
+        set star = 5
+        where code = new.code;
+    end if ;
+    if (min_gain=today_gain) then 
+        update rating 
+        set star = 1
+        where code = new.code;
+    end if ;
+    return new;
+end;
+$$ language plpgsql;
+
+create trigger update_start_by_gain 
+after insert on asx 
+for each row execute procedure check_max_gain_and_give_5_stars() ;

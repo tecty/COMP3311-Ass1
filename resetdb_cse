@@ -1,0 +1,16 @@
+#!/bin/bash 
+echo 'drop database mydb; create database mydb;'| psql 
+
+echo "apply schema"
+psql mydb -f asx-schema.sql 
+echo 
+echo "apply data"
+psql mydb -f asx-data.sql 
+echo 
+echo "apply answer views"
+psql mydb -f answer.sql 
+echo 
+echo "TEST Result"
+psql mydb -f test.sql 
+
+

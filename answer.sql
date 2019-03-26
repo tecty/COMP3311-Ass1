@@ -259,3 +259,20 @@ $$ language plpgsql;
 create trigger update_start_by_gain 
 after insert on asx 
 for each row execute procedure check_max_gain_and_give_5_stars() ;
+
+-- q18
+
+create function log_update_in_asx() returns trigger as $$
+declare 
+    timenow timestamp;
+begin
+    timenow := (select CURRENT_TIMESTAMP);
+    insert into asxlog("Timestamp", "Date",code, oldvolume, oldprice)
+    values (timenow, old."Date", old.code, old.volume, old.price);
+    return new;
+end;
+$$ language plpgsql;
+
+create trigger log_update 
+after update on asx 
+for each row execute procedure log_update_in_asx();

@@ -19,7 +19,14 @@ insert into executive (code, person) values ('DDD','Toby');
 insert into executive (code, person) values ('DDD','Jone');
 
 -- q16
+select * from avg_company_rating  where code = 'BBB';
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-23' , 'BBB'  , 1503600 ,1.2 );
 select * from avg_company_rating  where code = 'BBB';
 insert into asx ("Date", Code, Volume, Price) values ('2018-05-24' , 'BBB'  , 1503600 ,0.5 );
 select * from avg_company_rating  where code = 'BBB';
+
+-- q17 
+select * from ASXLog;
+update asx set volume=22222222, Price=0.91 
+where "Date"='2018-05-24' and code = 'BBB';
+select * from ASXLog;
